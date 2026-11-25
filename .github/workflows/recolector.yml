@@ -1,0 +1,31 @@
+name: Recolector de conciertos
+
+on:
+  schedule:
+    - cron: '0 5,11,17,23 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency: recolector
+
+jobs:
+  recoger:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Instalar el navegador
+        run: npm install --no-save playwright@1 && npx playwright install --with-deps chromium
+      - name: Leer todas las agendas y RSS
+        run: node recolector.mjs
+      - name: Guardar datos.json
+        run: |
+          git config user.name "zgz-robot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add datos.json
+          git diff --cached --quiet || (git commit -m "Datos $(date -u '+%Y-%m-%d %H:%M') UTC" && git push)
