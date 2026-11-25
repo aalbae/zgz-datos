@@ -17,6 +17,11 @@ page.on('pageerror', e => console.log('Error en la página:', e.message));
 await page.goto(WEB + (WEB.includes('?') ? '&' : '?') + 'recolector=1', { waitUntil: 'domcontentloaded', timeout: 120000 });
 await page.waitForFunction(() => window.ZGZ_DATOS, null, { timeout: 20 * 60 * 1000, polling: 2000 });
 const d = await page.evaluate(() => window.ZGZ_DATOS);
+// la lista final, tal como la ve la gente en la web (ya juntada, sin repetidos y sin lo filtrado)
+const filas = await page.evaluate(() => gigs.filter(g => g.date >= ds(0)).map(g => ({
+  fecha: g.date, hora: g.time || '', grupo: g.band, teloneros: g.support || '', sala: g.venue,
+  estilo: (estOf(g).e || ''), gratis: g.free ? 'sí' : '', origen: g.man ? 'a mano' : g.news ? 'noticia' : 'agenda', enlace: g.url || '',
+})));
 await browser.close();
 
 const n = (d.AG?.length || 0) + (d.RS?.length || 0);
@@ -24,5 +29,8 @@ console.log(`Agendas: ${d.AG.length} · RSS: ${d.RS.length} · estilos: ${Object
 for (const s of [...d.STA, ...d.STR]) console.log(`  ${s.ok ? '✓' : '✕'} ${s.n}${s.c != null ? ' · ' + s.c : ''}`);
 if (n < MIN) { console.error(`Solo ${n} conciertos: no se guarda, se queda el datos.json anterior.`); process.exit(1); }
 fs.writeFileSync('datos.json', JSON.stringify(d));
-console.log('datos.json guardado.');
+const col = ['fecha', 'hora', 'grupo', 'teloneros', 'sala', 'estilo', 'gratis', 'origen', 'enlace'];
+const csv = v => /[",\n]/.test(v) ? '"' + String(v).replace(/"/g, '""') + '"' : String(v);
+fs.writeFileSync('conciertos.csv', [col.join(',')].concat(filas.map(f => col.map(c => csv(f[c] ?? '')).join(','))).join('\n') + '\n');
+console.log(`datos.json y conciertos.csv guardados (${filas.length} conciertos en la tabla).`);
 
