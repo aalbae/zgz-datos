@@ -25,3 +25,4 @@ for (const s of [...d.STA, ...d.STR]) console.log(`  ${s.ok ? '✓' : '✕'} ${s
 if (n < MIN) { console.error(`Solo ${n} conciertos: no se guarda, se queda el datos.json anterior.`); process.exit(1); }
 fs.writeFileSync('datos.json', JSON.stringify(d));
 console.log('datos.json guardado.');
+
