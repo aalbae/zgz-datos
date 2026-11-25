@@ -3,7 +3,7 @@
 import { chromium } from 'playwright';
 import fs from 'node:fs';
 
-const WEB = process.env.WEB || 'https://zgzenvivo-pruebas.angelalbae.workers.dev/';
+const WEB = process.env.WEB || 'https://zgzenvivo.es/';
 const MIN = 20; // si salen menos conciertos que esto, algo ha fallado y no se toca el archivo bueno
 
 // --disable-web-security: deja al robot leer cada web directamente, sin pasar por el relé
