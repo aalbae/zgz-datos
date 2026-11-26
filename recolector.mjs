@@ -24,10 +24,10 @@ const filas = await page.evaluate(() => gigs.filter(g => g.date >= ds(0)).map(g 
 })));
 // estilos de cada grupo: el que sale en la web sin contar estilos.csv ("auto") — para la tabla estilos.csv
 const autos = await page.evaluate(() => {
-  const guard = ESTCSV; ESTCSV = {};
+    const hay = typeof ESTCSV !== 'undefined', guard = hay ? ESTCSV : null; if (hay) ESTCSV = {};
   const o = {};
   gigs.filter(g => g.date >= ds(0)).forEach(g => { const k = vkey(g.band); if (k && !o[k]) o[k] = { grupo: g.band, auto: (estOf(g).e || '').split(' + ').filter(Boolean).join('/') }; });
-  ESTCSV = guard; return o;
+    if (hay) ESTCSV = guard; return o;
 });
 await browser.close();
 
