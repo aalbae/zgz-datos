@@ -22,6 +22,13 @@ const filas = await page.evaluate(() => gigs.filter(g => g.date >= ds(0)).map(g 
   fecha: g.date, hora: g.time || '', grupo: g.band, teloneros: g.support || '', sala: g.venue,
   estilo: (estOf(g).e || ''), gratis: g.free ? 'sí' : '', origen: g.man ? 'a mano' : g.news ? 'noticia' : 'agenda', enlace: g.url || '',
 })));
+// estilos de cada grupo: el que sale en la web sin contar estilos.csv ("auto") — para la tabla estilos.csv
+const autos = await page.evaluate(() => {
+  const guard = ESTCSV; ESTCSV = {};
+  const o = {};
+  gigs.filter(g => g.date >= ds(0)).forEach(g => { const k = vkey(g.band); if (k && !o[k]) o[k] = { grupo: g.band, auto: (estOf(g).e || '').split(' + ').filter(Boolean).join('/') }; });
+  ESTCSV = guard; return o;
+});
 await browser.close();
 
 const n = (d.AG?.length || 0) + (d.RS?.length || 0);
@@ -33,4 +40,31 @@ const col = ['fecha', 'hora', 'grupo', 'teloneros', 'sala', 'estilo', 'gratis', 
 const csv = v => /[",\n]/.test(v) ? '"' + String(v).replace(/"/g, '""') + '"' : String(v);
 fs.writeFileSync('conciertos.csv', [col.join(',')].concat(filas.map(f => col.map(c => csv(f[c] ?? '')).join(','))).join('\n') + '\n');
 console.log(`datos.json y conciertos.csv guardados (${filas.length} conciertos en la tabla).`);
+
+// estilos.csv: todos los grupos. Si cambias la columna "estilo" (y ya no coincide con "robot"), el robot no la vuelve a tocar.
+function leerCsv(t) {
+  const out = []; let row = [], c = '', q = false; t = String(t || '').replace(/^\ufeff/, '');
+  for (let i = 0; i < t.length; i++) { const ch = t[i];
+    if (q) { if (ch === '"') { if (t[i + 1] === '"') { c += '"'; i++ } else q = false } else c += ch }
+    else if (ch === '"') q = true; else if (ch === ',' || ch === ';') { row.push(c); c = '' }
+    else if (ch === '\n' || ch === '\r') { if (ch === '\r' && t[i + 1] === '\n') i++; row.push(c); out.push(row); row = []; c = '' } else c += ch }
+  if (c || row.length) { row.push(c); out.push(row) } return out;
+}
+const clave = s => String(s || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]/g, '');
+const prev = {};
+if (fs.existsSync('estilos.csv')) leerCsv(fs.readFileSync('estilos.csv', 'utf8')).forEach((f, i) => {
+  const g = (f[0] || '').trim(); if (!g || (i === 0 && /^grupo$/i.test(g))) return;
+  prev[clave(g)] = { grupo: g, estilo: (f[1] || '').trim(), robot: (f[2] || '').trim() };
+});
+const nuevas = {};
+for (const [k0, a] of Object.entries(autos)) {
+  const k = clave(a.grupo), p = prev[k];
+  const tocado = p && p.estilo !== p.robot;           // lo has cambiado tú: se respeta
+  nuevas[k] = { grupo: p ? p.grupo : a.grupo, estilo: tocado ? p.estilo : a.auto, robot: a.auto };
+}
+for (const [k, p] of Object.entries(prev)) if (!nuevas[k] && p.estilo !== p.robot) nuevas[k] = p;  // tus correcciones se guardan aunque el grupo no toque ahora
+const q = v => /[",\n]/.test(v) ? '"' + String(v).replace(/"/g, '""') + '"' : String(v);
+const filasE = Object.values(nuevas).sort((x, y) => x.grupo.localeCompare(y.grupo, 'es'));
+fs.writeFileSync('estilos.csv', 'grupo,estilo,robot\n' + filasE.map(r => [r.grupo, r.estilo, r.robot].map(q).join(',')).join('\n') + '\n');
+console.log(`estilos.csv guardado (${filasE.length} grupos, ${filasE.filter(r => r.estilo !== r.robot).length} corregidos a mano).`);
 
