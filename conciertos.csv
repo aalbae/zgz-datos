@@ -1,6 +1,5 @@
 fecha,hora,grupo,teloneros,sala,estilo,gratis,origen,enlace
-2026-11-25,20:00,Lorena Álvarez,,Sala Genius,Folk,,agenda,https://www.aragonmusical.com/agenda/lorena-alvarez-2/
-2026-11-25,21:00,Split Dogs,,Sala Rock & Blues,Punk + Rock,,agenda,https://www.laganzua.net/conciertos/split-dogs-zaragoza-1016933
+2026-11-25,21:00,Split Dogs,,Sala Rock & Blues,Punk + Rock,,agenda,https://www.planomato.com/es/zaragoza/p/split-dogs-rock-and-blues-cafe-zaragoza
 2026-11-26,19:30,Michel Cloup Trio,,Centro Cívico Delicias,Rock + Psicodelia + Post-punk,,agenda,https://vivezaragoza.es/hoy/evento/michel-cloup-trio-francia
 2026-11-26,19:30,Cecilia Bartoli y Lang Lang,,Sala Mozart,Clásica,,agenda,https://vivezaragoza.es/hoy/evento/cecilia-bartoli-y-lang-lang
 2026-11-26,20:00,Musethica,,Iglesia de San Pablo,Clásica,sí,agenda,https://vivezaragoza.es/hoy/evento/musethica
@@ -117,6 +116,7 @@ fecha,hora,grupo,teloneros,sala,estilo,gratis,origen,enlace
 2026-12-14,22:00,Cyril Kamer,,Sala Oasis,Trap + Urbano + Hip-hop,,agenda,https://www.aragonmusical.com/agenda/cyril-kamer/
 2026-12-16,18:00,D'Aragón. Jotas,,Plaza del Pilar,Folk,,agenda,https://vivezaragoza.es/hoy/evento/daragon-jotas
 2026-12-16,19:30,Giulio Mercati. Concierto de órgano,,Basílica de Santa Engracia,,,agenda,https://vivezaragoza.es/hoy/evento/giulio-mercati-concierto-de-organo
+2026-12-16,,Pothamus,,Sala Creedence,Doom,,agenda,https://www.zaragoza.es/sede/servicio/cultura/evento/317538
 2026-12-17,21:00,Jambass,,Sala Rock & Blues,Tributo + Reggae + Ska + Rap,sí,agenda,https://www.aragonmusical.com/agenda/jambass/
 2026-12-18,19:00,Las Chicas del Soul. Christmas,,Fundación Ibercaja Actur,Soul,,agenda,https://vivezaragoza.es/hoy/evento/las-chicas-del-soul-christmas
 2026-12-18,20:00,Lágrimas De Mermelada Y Los Furtivos,,La Casa del Loco,Garage,,agenda,https://www.aragonmusical.com/agenda/lagrimas-de-mermelada-y-los-furtivos/
@@ -169,7 +169,7 @@ fecha,hora,grupo,teloneros,sala,estilo,gratis,origen,enlace
 2026-12-30,20:30,Clásica Inmersiva,,Sala Mozart,Clásica,,agenda,https://www.aragonmusical.com/agenda/clasica-inmersiva/
 2026-12-30,21:00,Lynn Milanés,,Teatro de las Esquinas,Pop + Blues + Folk + Rock,,agenda,https://www.aragonmusical.com/agenda/lynn-milanes/
 2026-12-30,21:00,Nice Fellas,,Sala Rock & Blues,Rock + Blues + Soul + Jazz,sí,agenda,https://www.aragonmusical.com/agenda/nice-fellas/
-2027-01-02,16:30,CantaJuego,,Auditorio de,,,agenda,https://www.songkick.com/concerts/43465563-cantajuego-at-auditorio-de-zaragoza?utm_medium=organic&utm_source=microformat
+2027-01-02,16:30,CantaJuego,,Auditorio de,Folk,,agenda,https://www.songkick.com/concerts/43465563-cantajuego-at-auditorio-de-zaragoza?utm_medium=organic&utm_source=microformat
 2027-01-02,20:30,"La Doloritas, The Hermetics & Start Apart",,Sala La Lata de Bombillas,Blues,,agenda,https://www.aragonmusical.com/agenda/la-doloritas-the-hermetics-start-apart/
 2027-01-02,21:00,The Roadhouse,,Sala Rock & Blues,Blues + Rock + Hard rock,sí,agenda,https://www.aragonmusical.com/agenda/the-roadhouse-3/
 2027-01-02,,Alizia Maravillas.MikrÓpera,,Centro Cívico Rio Ebro. Edificio Fernández Ordoñez,Clásica,,agenda,https://mikropera.com/
@@ -218,6 +218,7 @@ fecha,hora,grupo,teloneros,sala,estilo,gratis,origen,enlace
 2027-01-23,21:00,Mandragora Negra,Ethernal,Sala Utopía,Rock,,agenda,https://www.aragonmusical.com/agenda/mandragora-negra-ethernal/
 2027-01-23,21:30,Rubén Pozo,,Sala La Lata de Bombillas,Rock,,agenda,https://www.laganzua.net/conciertos/ruben-pozo-zaragoza-1018134
 2027-01-23,22:00,La Milagrosa,,Sala Oasis,Pop + Punk + Post-punk,,agenda,https://www.aragonmusical.com/agenda/la-milagrosa-3/
+2027-01-23,22:00,Soleá Morente,,Sala El Veintiuno,Flamenco + Rock,,agenda,https://www.aragonmusical.com/agenda/solea-morente-5/
 2027-01-24,18:30,MALWINA MASTERNAK & GRADUS,,Sala Mozart,Jazz + Folk,,agenda,https://vivezaragoza.es/hoy/evento/malwina-masternak-gradus
 2027-01-25,20:00,Las Minas Tour,,Teatro Principal de Zaragoza,Flamenco,,agenda,https://www.planomato.com/es/zaragoza/p/las-minas-tour-zaragoza
 2027-01-27,19:30,Orquesta Sinfónica de Viena,,Sala Mozart,Clásica,,agenda,https://vivezaragoza.es/hoy/evento/orquesta-sinfonica-de-viena
