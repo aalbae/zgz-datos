@@ -2,7 +2,7 @@ name: Recolector de conciertos
 
 on:
   schedule:
-   - cron: '23 4,10,16,22 * * *'
+   - cron: '23 6,10,14,18 * * *' 
   workflow_dispatch: {}
 
 permissions:
